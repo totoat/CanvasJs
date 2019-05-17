@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>canvas move tutorial</title>
+        <style>
+            #canvas{
+                background: #099;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <script>
+            // マウスドラッグのチュートリアル
+            var canvas =document.getElementById("canvas");
+
+            function onDown(e){
+
+            }
+            function onUp(e){
+
+            }
+            function onClick(e){
+
+            }
+            function onOver(e){
+
+            }
+            function onOut(e){
+
+            }
+            function onMove(e){
+                console.log("マウスうごいてる");
+
+                var x=e.clientX-canvas.offsetLeft;
+                var y=e.clientY-canvas.offsetTop;
+                // 幅　太さ
+                var thickness =4;
+
+                var context=canvas.getContext('2d');
+                context.fillStyle="Red";
+                context.fillRect(x,y,thickness,thickness);
+            }
+
+            canvas.addEventListener('mousedown',onDown,false);
+            canvas.addEventListener('mouseup',onUp,false);
+            canvas.addEventListener('click',onClick,false);
+            canvas.addEventListener('mouseover',onOver,false);
+            canvas.addEventListener('mouseout',onOut,false);
+            canvas.addEventListener('mousemove',onMove,false);
+        </script>
+    </body>
+</html>

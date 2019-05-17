@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>canvas tutorial</title>
+        <style>
+            #canvas{
+                background: #090;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <script>
+            // ここにjavascript
+            var canvas =document.getElementById("canvas");
+
+            function onDown(e){
+                console.log("クリックdown");
+            }
+
+            function onUp(e){
+                console.log("クリックup");
+            }
+
+            function onClick(e){
+                console.log("クリックしました");
+                // e.clientX でイベント発行した地点の座標を取得
+                // オフセット値=基準点からの位置(今回は8で固定)
+                // キャンパスはウィンドウの左端から少しだけ(8pixelだけ)隙間を開けている これがオフセット値
+                var x=e.clientX-canvas.offsetLeft;
+                var y=e.clientY-canvas.offsetTop;
+                console.log("e.clientX:",e.clientX);
+                console.log("キャンパスのオフセット値",canvas.offsetLeft);
+                console.log("x:",x,"y:",y);
+
+                // 描画のための API にアクセスするためのオブジェクトを取得
+                var context =canvas.getContext('2d');
+                //CSSの記法と同じ
+                context.fillStyle ="blue";
+                // Rect=長方形 1,2引数は描画位置(左上) 3,4引数は長方形の幅
+                context.fillRect(x,y,10,10);
+            }
+
+            function onOver(e){
+                console.log("キャンパスの中に");
+            }
+
+            function onOut(e){
+                console.log("キャンパスの外に");
+            }
+
+            canvas.addEventListener('mousedown',onDown,false);
+            canvas.addEventListener('mouseup',onUp,false);
+            canvas.addEventListener('click',onClick,false);
+            canvas.addEventListener('mouseover',onOver,false);
+            canvas.addEventListener('mouseout',onOut,false);
+
+        </script>
+    </body>
+</html>

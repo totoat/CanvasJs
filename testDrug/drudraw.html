@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>canvas drugdraw tutorial</title>
+        <style>
+            #canvas{
+                background: rgb(218, 116, 218);
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="900" height="675"></canvas>
+        <script>
+            // マウスドラッグのチュートリアル
+            var canvas =document.getElementById("canvas");
+            //ドラッグしてるか
+            var dragging=false;
+            // 幅　太さ
+            var thickness =4;
+
+
+            function onDown(e){
+                dragging=true;
+            }
+            function onUp(e){
+                dragging=false;
+            }
+            function onClick(e){
+
+            }
+            function onOver(e){
+
+            }
+            function onOut(e){
+
+            }
+            function onMove(e){
+                console.log("マウスうごいてる");
+
+                if(dragging){
+                    var x=e.clientX-canvas.offsetLeft;
+                    var y=e.clientY-canvas.offsetTop;
+                    var context=canvas.getContext('2d');
+                    context.fillStyle="Red";
+                    context.fillRect(x,y,thickness,thickness);
+                }
+            }
+
+            canvas.addEventListener('mousedown',onDown,false);
+            canvas.addEventListener('mouseup',onUp,false);
+            canvas.addEventListener('click',onClick,false);
+            canvas.addEventListener('mouseover',onOver,false);
+            canvas.addEventListener('mouseout',onOut,false);
+            canvas.addEventListener('mousemove',onMove,false);
+        </script>
+    </body>
+</html>

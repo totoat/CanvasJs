@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>canvas drugdraw tutorial</title>
+        <style>
+            #canvas{
+                background: rgb(229, 255, 187);
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="900" height="675"></canvas>
+        <script>
+            // canvasのIDを取得
+            var canvas =document.getElementById("canvas");
+            var context=canvas.getContext('2d');
+
+            var objX=50;
+            var objY=50;
+            var objWidth=150;
+            var objHeight=80;
+            // マウス座標
+            var x;
+            var y;
+
+            context.fillStyle="darkorchid";
+            //ドラッグしてるか
+            var dragging=false;
+            // 幅　太さ
+            var thickness =4;
+
+            context.fillRect(objX,objY,objWidth,objHeight);
+
+            function onDown(e){
+                dragging=true;
+
+                x=e.clientX-canvas.offsetLeft;
+                y=e.clientY-canvas.offsetTop;
+                // 対象にポインタが当てられているか
+                if(objX<=x && x<= objX+objWidth){
+                    if(objY<=y && y<= objY+objHeight){
+                        console.log("範囲内");
+                    }
+                }
+            }
+            function onUp(e){
+                dragging=false;
+            }
+            function onClick(e){
+
+            }
+            function onOver(e){
+
+            }
+            function onOut(e){
+
+            }
+            function onMove(e){
+                console.log("マウスうごいてる");
+
+                if(dragging){
+                    x=e.clientX-canvas.offsetLeft;
+                    y=e.clientY-canvas.offsetTop;
+                    context.fillRect(x,y,objWidth,objHeight);
+                }
+            }
+
+            canvas.addEventListener('mousedown',onDown,false);
+            canvas.addEventListener('mouseup',onUp,false);
+            canvas.addEventListener('click',onClick,false);
+            canvas.addEventListener('mouseover',onOver,false);
+            canvas.addEventListener('mouseout',onOut,false);
+            canvas.addEventListener('mousemove',onMove,false);
+        </script>
+    </body>
+</html>
